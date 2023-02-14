@@ -3,3 +3,21 @@ To Do: Completar a leitura de arquivo no teste de unidade
 TESTES DE SERVIÇO / API / WEB SERVICES
 
 - Objetivo: Testar a comunicação e processamento entre APIs / Serviços
+
+
+TDD = Test Driven Development
+      Desenvolvimento Direcionado por Testes
+
+Teste de Unidade = um codigo testando um outro
+
+
+O que é um Serviço?
+É um recurso de comunicação entre sistemas e aplicativos
+
+As 4 operações básicas de um Serviço
+
+  API         BD / MER
+- Post      = (C) Create = Inserir
+- Get       = (R) Reach = Consultar
+- Put       = (U) Update = Alterar
+- Delete    = (D) Delete = Excluir
