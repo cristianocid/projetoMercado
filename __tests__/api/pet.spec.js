@@ -12,6 +12,7 @@ const petId = 17321812;                           // codigo do animal
 
 describe("PetStore Swagger - Pet", () => {
     const request = supertest(baseUrl);
+    const pets = require("../../src/vendors/json/petn")
 
     // Post - teste de incluir animal
     it("Post Pet", () => {
@@ -73,4 +74,22 @@ describe("PetStore Swagger - Pet", () => {
                 assert.equal(response.body.name, "Garfield");
         });
     });
+
+    // Função de cargas de animais - Setup
+    pets.array.forEach(({nomePet, idPet, nomeCategoria, idCategoria}) => {
+        it("Setup Swagger - Add Pets", () => {
+            pet.id = idPet
+            pet.name = nomePet
+            pet.category.id = idCategoria
+            pet.category.name = nomeCategoria
+            pet.tags[0].id = 3
+            pet.tags[0].name = "vaccinated" 
+            pet.status = "done"
+
+            return request
+                .post("/pet")
+                .send(pet)
+        });
+    });
+
 });
