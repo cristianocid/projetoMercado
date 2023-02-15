@@ -13,6 +13,27 @@ const petId = 17321812;                           // codigo do animal
 describe("PetStore Swagger - Pet", () => {
     const request = supertest(baseUrl);
     const pets = require("../../src/vendors/json/petn")
+    let pet = require("../../src/vendors/json/petBase.json")
+    
+    // Teste respeitando a ordem primeiro adicionar e só depois deletar
+    pets.array.forEach(({nomePet, idPet, nomeCategoria, idCategoria}) => {
+        it("Setup Swagger - Add Pets - " + nomePet, () => {
+            pet.id = idPet
+            pet.name = nomePet
+            pet.category.id = idCategoria
+            pet.category.name = nomeCategoria
+            pet.tags[0].id = 3
+            pet.tags[0].name = "vaccinated" 
+            pet.status = "done"
+
+            return request
+                .post("/pet")
+                .send(pet)
+                .then((response) => {
+                    assert.equal(response.statusCode, 200)
+                });
+        });
+    })
 
     // Post - teste de incluir animal
     it("Post Pet", () => {
@@ -76,8 +97,10 @@ describe("PetStore Swagger - Pet", () => {
     });
 
     // Função de cargas de animais - Setup
+    // Adicionando animais
+    // Teste não respeitando ordem, adiciona 1 animal e exclui em seguida
     pets.array.forEach(({nomePet, idPet, nomeCategoria, idCategoria}) => {
-        it("Setup Swagger - Add Pets", () => {
+        {/*it("Setup Swagger - Add Pets - " + nomePet, () => {
             pet.id = idPet
             pet.name = nomePet
             pet.category.id = idCategoria
@@ -89,6 +112,20 @@ describe("PetStore Swagger - Pet", () => {
             return request
                 .post("/pet")
                 .send(pet)
+                .then((response) => {
+                    assert.equal(response.statusCode, 200)
+                });
+        });*/}
+
+        // Deletando animais
+        // Para a ordem de teste ficar correta deleta o Setup Swagger 
+        it("Teardown Swagger - Delete Pets - " + nomePet, () => {
+            
+            return request
+                .delete(`/pet/${idPet}`)
+                .then((response) => {
+                    assert.equal(response.statusCode, 200)
+                });
         });
     });
 
