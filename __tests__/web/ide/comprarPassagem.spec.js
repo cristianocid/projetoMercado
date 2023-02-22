@@ -2,10 +2,12 @@
 // Bibliotecas
 const { Builder, By, Key, until } = require('selenium-webdriver')
 const assert = require('assert')
+require("chromedriver") // <-- não foi gerado automaticamente
+// apontamento para o chromedriver. Ex: Firefox = geckodriver
 
 // Suite de Teste
 describe('ComprarPassagem', function() {
-  this.timeout(30000) // espera implicita / paciência = 30.000 milisegundos
+  //this.timeout(30000) // espera implicita / paciência = 30.000 milisegundos
   let driver          // objeto do Selenium WebDriver
   let vars            // lista para guardar variaveis e informaçoes
   
@@ -13,6 +15,7 @@ describe('ComprarPassagem', function() {
   beforeEach(async function() {
     // Instancia o objeto Selenium WebDriver para controlar o Chrome Driver
     driver = await new Builder().forBrowser('chrome').build()
+    driver.manage().setTimeouts({implicit: 60000}) // define a espera
     vars = {}         // inicializa a lista como vazia
   })
 
