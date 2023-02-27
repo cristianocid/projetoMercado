@@ -27,7 +27,7 @@ Given('acesso o site BlazeDemo', async function () {
     await this.driver.get('https://www.blazedemo.com')
 });
 
-When('seleciono origem como {string} e destino como {string}', async function (origem, destino) {
+When('Seleciono origem como {string} e destino como {string}', async function (origem, destino) {
     await this.homePage.selecionarOrigemDestinoVoo(origem, destino) 
 });
 

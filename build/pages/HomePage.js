@@ -1,12 +1,12 @@
 const BasePage = require('./BasePage');
-const By = require("selenium-webdriver").By;
+const By = require('selenium-webdriver').By;
 class HomePage extends BasePage {
     constructor(driver) {
         super(driver);
         this.byDropDownOrigem = By.name('fromPort');
         this.byDropDownDestino = By.name('toPort');
         this.btnBuscar = By.css('input.btn.btn-primary');
-    }
+    } // fim do construtor
     async selecionarOrigemDestinoVoo(origem, destino) {
         // selecionar a cidade origem
         let dropDownOrigem = await this.driver.findElement(this.byDropDownOrigem);
@@ -17,5 +17,5 @@ class HomePage extends BasePage {
         // clicar no botão Find Flights
         await this.driver.findElement(this.btnBuscar).click();
     }
-}
+} // fim da classe
 module.exports = HomePage;

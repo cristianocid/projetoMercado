@@ -23,7 +23,7 @@ const chrome = require('selenium-webdriver/chrome');
 (0, cucumber_1.Given)('acesso o site BlazeDemo', async function () {
     await this.driver.get('https://www.blazedemo.com');
 });
-(0, cucumber_1.When)('seleciono origem como {string} e destino como {string}', async function (origem, destino) {
+(0, cucumber_1.When)('Seleciono origem como {string} e destino como {string}', async function (origem, destino) {
     await this.homePage.selecionarOrigemDestinoVoo(origem, destino);
 });
 (0, cucumber_1.Then)('exibe o titulo da guia como {string}', async function (tituloEsperado) {
