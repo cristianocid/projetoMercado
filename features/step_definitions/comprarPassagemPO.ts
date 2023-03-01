@@ -11,7 +11,7 @@ Before(async function () {
 
     this.driver = await new Builder()
         .forBrowser('chrome')
-        //.setChromeOptions(options)
+        //.setChromeOptions(options) faz rodar invisivel
         .build()
     this.driver.manage().setTimeouts({ implicit: 60000 })
     this.driver.manage().window().maximize()
